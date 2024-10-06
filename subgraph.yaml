@@ -1,0 +1,26 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: TobXI
+    network: scroll-sepolia
+    source:
+      address: "0xB164B0ac1b738882dE4B41d781F0A38671dE8F6b"
+      abi: TobXI
+      startBlock: 6875866
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - User
+      abis:
+        - name: TobXI
+          file: ./abis/TobXI.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/tob-xi.ts
